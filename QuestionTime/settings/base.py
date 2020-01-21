@@ -48,6 +48,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -161,3 +170,24 @@ WAGTAIL_SITE_NAME = "QuestionTime"
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://example.com'
+
+# Custom
+
+AUTH_USER_MODEL = 'users.CustomUser'
+CRISPY_TEMPLATE_PACK = 'uni-form'
+
+# django-allauth
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_REQUIRED = True
+SITE_ID = 1
+
+LOGIN_URL =  'accounts/login'
+LOGIN_REDIRECT_URL =  '/'
+LOGOUT_REDIRECT_URL =  '/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authtentication.TokenAuthentication',
+        'rest_framework.authtentication.SessionAuthentication',
+    )
+}
